@@ -17,6 +17,8 @@ function list() {
 function addCriticInfo(review_id) {
     return knex("critics as c")
         .join("reviews as r", "c.critic_id", "r.critic_id")
+        //since three are repreated column names between reviews and movies, i needed to alias the repeated
+        //column to then use them in map properties
         .select("c.*",
             "r.*",
             "r.created_at as r_created_at",
@@ -39,6 +41,9 @@ function update(updatedReview) {
         .select("*")
         .where({ review_id: updatedReview.review_id })
         .update(updatedReview)
+        //this would normally be (updatedReview, "*").then(data => data[0])
+        //to return an array of all the column from the updated review and then return the first element in teh array
+        //but the test uses sqlite3 and not postgresql
 }
 
 function destroy(review_id) {
