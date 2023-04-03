@@ -1,5 +1,7 @@
 exports.up = function (knex) {
     return knex.schema.createTable("movies_theaters", table => {
+        //create movies_theaters table with two foreign ids
+        //referencing movie id and theater id
         table.integer("movie_id").unsigned().notNullable();
         table
             .foreign("movie_id")
@@ -17,5 +19,6 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
+    //drop movies_theaters table on rollback
     return knex.schema.dropTable("movies_theaters")
 };

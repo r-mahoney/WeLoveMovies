@@ -1,6 +1,8 @@
 
 exports.up = function (knex) {
     return knex.schema.createTable("reviews", table => {
+        //create reviews table
+        //add two foreign ids referencing critic id and movie id
         table.increments("review_id").primary();
         table.text("content");
         table.integer("score");
@@ -20,5 +22,6 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
+    //drop reviews table when rolling back
     return knex.schema.dropTable("reviews");
 };
