@@ -36,7 +36,7 @@ function listTheaters(movie_id) {
     return knex("movies as m")
         .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
         .join("theaters as t", "t.theater_id", "mt.theater_id")
-        .select("t.theater_id", "t.name")
+        .select("t.theater_id", "t.name", "t.address_line_1", "t.address_line_2", "t.city", "t.name", "t.state", "t.zip")
         .where({ "m.movie_id": movie_id })
         .then(theatersForMovie)
 }

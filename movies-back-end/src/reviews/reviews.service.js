@@ -29,6 +29,27 @@ function addCriticInfo(review_id) {
         .then(addCritics)
 }
 
+/*
+this turned out to be a simpler way to add critic info to the review where you return reviews based on movie id
+and then based on teh array of data returned, you map over that data and perform the addCriticInfo map to each review
+this takes out the need for a Promise.all in the controller and reduces the ammount of steps in the controllers list function
+
+function addCritic(movie_id) {
+    return knex("critics as c")
+        .join("reviews as r", "c.critic_id", "r.critic_id")
+        //since three are repreated column names between reviews and movies, i needed to alias the repeated
+        //column to then use them in map properties
+        .select("c.*",
+            "r.*",
+            "r.created_at as r_created_at",
+            "r.updated_at as r_updated_at",
+            "r.critic_id as r_critic_id")
+        .where({ movie_id })
+        .then(data => data.map(review => addCritics(review)))
+}
+
+*/
+
 function read(review_id) {
     return knex("reviews")
         .select("*")
@@ -58,4 +79,5 @@ module.exports = {
     update,
     addCriticInfo,
     delete: destroy,
+    //addCritic
 }
