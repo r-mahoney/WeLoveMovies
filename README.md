@@ -10,9 +10,9 @@ To install the backend in this repository:
 1. Fork and clone the code by using the `Fork` button at the top of the page
 2. cd into the `movies-back-end` folder
 3. run `npm install`
-4. run `npm run start:dev`
+4. run `npm start`
 
-`npm run start:dev` will start the server allowing you to acces the database and make HTTP requests to view data
+`npm start` will start the server allowing you to acces the database and make HTTP requests to view data
 
 To install the frontend in this repository:
 1. cd into the `movie-front-end` folder
